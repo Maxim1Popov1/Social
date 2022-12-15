@@ -7,7 +7,8 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 import MyPosts from './MyPosts/MyPosts';
 
-const Profile = () => {  
+const Profile = (props) => {  
+        
 return <div className = {s.content}>
           
             <div><ProfileInfo />
@@ -15,8 +16,8 @@ return <div className = {s.content}>
 
         
         
-        <MyPosts />
-
+        <MyPosts data={props.data} />
+        
         </div>
         
 }

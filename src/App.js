@@ -12,22 +12,24 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Setting from "./components/Setting/Setting";
 
+const App = (props) => {
 
-const App = () => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
         <NavBar />
         <div className="app-wrapper-content">
-          <Routes> 
-            <Route path="/profile/*" element={<Profile/>} />
-            <Route path="/dialogs/*" element={<Dialogs />} />
-           
-            <Route path="/News/*" element={<News/>} />
-            <Route path="/Music/*" element={<Music/>} />
-            <Route path="/Setting/*" element={<Setting/>} />
-      
+          <Routes>
+            <Route path="/profile/*" element={<Profile data={props.postData} />} />
+            <Route
+              path="/dialogs/*"
+              element={<Dialogs dialogs={props.dialogs} messages={props.messages} />}
+            />
+
+            <Route path="/News/*" element={<News />} />
+            <Route path="/Music/*" element={<Music />} />
+            <Route path="/Setting/*" element={<Setting />} />
           </Routes>
         </div>
       </div>
