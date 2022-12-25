@@ -1,36 +1,44 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React  from 'react';
-import s from './MyPosts.module.css'
-import Post1 from './post/Post1';
+import React from "react";
+import s from "./MyPosts.module.css";
+import Post1 from "./post/Post1";
 
-const MyPosts = () => {  
+const MyPosts = (props) => {
+  
+  let postsElement = 
+props.posts.map( p => <Post1 message={p.message} likesCount={p.likesCount} />)
+  
+  let newPostElement = React.createRef();
 
-  let postData = [
-    { id:1, massage: 'message', likesCount: 12} ,
-    { id:2, massage: 'message', likesCount: 13} ,
-    { id:3, massage: 'message', likesCount: 14} ,
-    { id:4, massage: 'message', likesCount: 125} ,
-    { id:5, massage: 'message', likesCount: 16} ]
+  let addPost = () => {
+    props.dispatch({type: 'ADD-POST'});
+  };
 
-    let postElement = postData.map((p => <Post1 id={p.id} massage={p.message} likesCount={p.likesCount} /> ))
-
-return (
-  <div className={s.postsBlock}>
-   <h3>my post</h3> 
-  <div> 
-    <div>
-    <textarea></textarea>
-    </div>
-    <div>
-    <button>Add post</button>
-</div>
-  </div>
-     <div className={s.posts}>
-      {postElement}
-    </div>
-    </div>
-)
-        
+  let onPostChange = () => {
+    let text = newPostElement.current.value
+  let action =  {type: 'UPDATE-NEW-POST-TEXT', newText: text }
+  props.dispatch(action)
 }
+
+
+  
+
+  return (
+    <div className={s.postsBlock}>
+      <h3>my post</h3>
+      <div>
+        <div>
+          <textarea onChange={ onPostChange }
+           ref={ newPostElement } 
+           value={props.newPostText}></textarea>
+        </div>
+        <div>
+          <button onClick={addPost}>Add post</button>
+        </div>
+      </div>
+      <div className={s.posts}>{postsElement}</div>
+    </div>
+  );
+};
 
 export default MyPosts;
