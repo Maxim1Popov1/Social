@@ -2,7 +2,7 @@
 
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 2fr 5fr;
 color: aliceblue;
 }
 .dialogsItems { 
@@ -16,5 +16,6 @@ padding: 10px;
 }
 .messages .message {
 color: azure;
+
 }
 

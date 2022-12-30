@@ -12,6 +12,7 @@ import Setting from "./components/Setting/Setting";
 
 
 
+
 const App = (props) => {
   return (
     
@@ -24,7 +25,7 @@ const App = (props) => {
             <Route path="/profile/*" element={<Profile dispatch= {props.dispatch}  profilePage={props.state.profilePage}/>} />
             <Route
               path="/dialogs/*"
-              element={<Dialogs state={props.state.dialogsPage} dialogs={props.state.profilePage.dialogs} messages={props.state.messagesPage.messages} />}
+              element={<Dialogs store={props.store} dispatch={props.dispatch}  dialogs={props.state.profilePage.dialogs} messages={props.state.messagesPage.messages} />}
             />
 
             <Route path="/News/*" element={<News />} />
